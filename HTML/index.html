@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kunskapskontroll 5</title>
+    <link rel="stylesheet" href="/CSS/style/index.css" />
+    <script type="module">
+      const mainElement = document.querySelector("main");
+
+      // Hämta bilder
+      async function fetchCats() {
+        isLoading = true;
+
+        let url = "https://api.thecatapi.com/v1/images/search?limit=12";
+
+        const response = await fetch(
+          "https://api.thecatapi.com/v1/images/search",
+
+          {
+            headers: {
+              "x-api-key": "b8c65b83-ea7e-4cf3-9028-f4d1e02212a4",
+            },
+          }
+        );
+
+        const data = await response.json();
+        console.log(data);
+
+        url = data.next;
+
+        // 1. Create list of promises
+        const promises = [];
+        data.results.forEach((result) => {
+          // 'renderIndividualPokemon' TAKES TIME
+          const promise = renderIndividualCats(result);
+          promises.push(promise);
+        });
+
+        // 2. Create list of promises - map/cleaner variant
+        // const promises = data.results.map(renderIndividualPokemon);
+
+        await Promise.all(promises);
+
+        // 20 ms later, all 20 divs for each pokemon are rendered
+
+        // Request detail information for 20 pokemon. This might take
+        // a while
+
+        // We set 'isLoading' before detail information has been downloaded 100%
+
+        console.log("Before setting 'isLoading' to false!");
+        isLoading = false;
+      }
+
+      function parseIndividualCat(detailData) {
+        const parsed = {
+          img: detailData.sprites.other["official-artwork"].front_default,
+          name: detailData.name,
+          types: detailData.types.map((type) => {
+            return type.type.name;
+          }),
+          order: detailData.id,
+        };
+        return parsed;
+      }
+
+      async function renderIndividualCat(cat) {
+        const div = document.createElement("div");
+        div.classList.add("cat");
+        mainElement.append(div);
+
+        const anotherResponse = await fetch(cat.url);
+        const detailData = await anotherResponse.json();
+        const parsedData = parseIndividualCat(detailData);
+
+        /* Create image */
+        const img = document.createElement("img");
+        img.src = parsedData.img;
+        div.append(img);
+
+        // ta bort? //
+        parsedData.types.forEach((type) => {
+          const li = document.createElement("li");
+          li.textContent = type;
+          li.classList.add(type);
+          ul.append(li);
+        });
+        div.append(ul);
+
+        console.log("renderIndividualCat is complete!");
+      }
+
+      fetchMultipleCat();
+    </script>
+  </head>
+  <body>
+    <h1>Todays cat heroes💖</h1>
+    <button class="previous">previous</button>
+    <button class="next">next</button>
+    <h6>Showing page 0</h6>
+
+    <main></main>
+  </body>
+</html>
