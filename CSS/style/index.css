@@ -1,0 +1,10 @@
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 50rem;
+    margin: 2 auto 0 auto;
+}
+
+img {
+
+}
