@@ -10,7 +10,7 @@
       const mainElement = document.querySelector("main");
 
       const response = await fetch(
-        `https://api.thecatapi.com/v1/images/search?limit=12&page=10order=asc`,
+        `https://api.thecatapi.com/v1/images/search?limit=12&page=10&order=asc`,
 
         {
           headers: {
@@ -29,18 +29,42 @@
 
         const img = document.createElement("img");
         img.src = item.url;
-        div.append(img);     
+        div.append(img);
       });
+      //sidbläddrar funktion
+      let counter = 0;
 
-      // let url = "https://api.thecatapi.com/v1/images/search?limit=12";
+      function updateText() {
+        title.textContent = counter;
+      }
+
+      function incrementCounter() {
+        counter++;
+        updateText(counter);
+      }
+
+      function decrementCounter() {
+        counter--;
+        updateText(counter);
+      }
+      setUpListeners();
+      updateText();
+      // knapparna
+      const backwardsButton = document.querySelector(".previous");
+      const forwardButton = document.querySelector(".next");
+
+      backwardsButton.addEventListener("click", decrementCounter);
+      forwardButton.addEventListener("click", incrementCounter);
+
     </script>
   </head>
   <body>
-    <h1>Todays cat heroes💖</h1>
-    <button class="previous">previous</button>
-    <button class="next">next</button>
-    <h6>Showing page 0</h6>
-
+    <section>
+      <h1>Todays cat heroes💖</h1>
+      <button class="previous">previous</button>
+      <button class="next">next</button>
+      <h6>Showing page 0</h6>
+    </section>
     <main></main>
   </body>
 </html>
