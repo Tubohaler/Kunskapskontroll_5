@@ -1,0 +1,19 @@
+{
+  "name": "5.-kunskapskontroll_5",
+  "version": "1.0.0",
+  "description": "Welcome to my final test called Kunskapskontroll 5.  Below you will find the instructions so that you will be able to check it out!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tubohaler/Kunskapskontroll_5.git"
+  },
+  "author": "David Skotte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tubohaler/Kunskapskontroll_5/issues"
+  },
+  "homepage": "https://github.com/Tubohaler/Kunskapskontroll_5#readme"
+}

@@ -7,20 +7,22 @@
     <title>Kunskapskontroll 5</title>
     <link rel="stylesheet" href="/CSS/style/index.css" />
     <script type="module">
+      
       const mainElement = document.querySelector("main");
+      const displayPage = document.querySelector("h6");
 
       // knapparna
       const backwardsButton = document.querySelector(".previous");
       const forwardButton = document.querySelector(".next");
-
-      //sidbläddrar funktion
+      
       let counter = 0;
 
       //Page counter
-      // function updateText() {
-      //   h6.textContent = response;
-      // }
-      async function getThatStuff() {
+      function updateText() {
+        displayPage.textContent = `Showing page ${counter}`;
+      }
+
+      async function fetchingImg() {
         const response = await fetch(
           `https://api.thecatapi.com/v1/images/search?limit=12&page=${counter}&order=asc`,
 
@@ -49,9 +51,10 @@
 
       function incrementCounter() {
         counter++;
-        // updateText(response);
+        backwardsButton.disabled = false;
+        updateText(displayPage);
         console.log(counter);
-        getThatStuff();
+        fetchingImg();
       }
 
       function decrementCounter() {
@@ -59,12 +62,10 @@
           backwardsButton.disabled = true;
         } else {
           counter--;
-          getThatStuff();
+          fetchingImg();
         }
-
         console.log(counter);
-
-        // updateText(response);
+        updateText(displayPage);
         console.log(counter);
       }
       // Event
@@ -73,8 +74,8 @@
         backwardsButton.addEventListener("click", decrementCounter);
       }
       setUpListeners();
-      getThatStuff();
-      // updateText();
+      fetchingImg();
+      updateText();
     </script>
   </head>
   <body>
