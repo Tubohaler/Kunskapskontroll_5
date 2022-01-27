@@ -4,7 +4,7 @@
   "description": "Welcome to my final test called Kunskapskontroll 5.  Below you will find the instructions so that you will be able to check it out!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "snowpack dev"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Tubohaler/Kunskapskontroll_5/issues"
   },
-  "homepage": "https://github.com/Tubohaler/Kunskapskontroll_5#readme"
+  "homepage": "https://github.com/Tubohaler/Kunskapskontroll_5#readme",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "snowpack": "^3.8.8"
+  }
 }
