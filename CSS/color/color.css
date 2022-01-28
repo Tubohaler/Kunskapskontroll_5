@@ -1,0 +1,8 @@
+body {
+  background-image: url("/assets/12eb3e70df01c5b29ca62984ab6f3a4e.jpeg");
+}
+
+section {
+  border: 10px solid rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(62deg, #8efc9d 0%, #c3fccf 100%);
+}

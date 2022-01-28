@@ -20,8 +20,5 @@
   "dependencies": {
     "jquery": "^3.6.0",
     "snowpack": "^3.8.8"
-  },
-  "devDependencies": {
-    "@snowpack/plugin-webpack": "^3.0.0"
   }
 }
