@@ -47,6 +47,7 @@ function decrementCounter() {
   pageNumber--;
   if (pageNumber === 0) {
     backwardButton.disabled = true;
+    fetchingImg();
   } else {
     fetchingImg();
   }
