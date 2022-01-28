@@ -44,10 +44,10 @@ function incrementCounter() {
 }
 
 function decrementCounter() {
+  pageNumber--;
   if (pageNumber === 0) {
     backwardButton.disabled = true;
   } else {
-    pageNumber--;
     fetchingImg();
   }
   updatePageNr(displayPage);
