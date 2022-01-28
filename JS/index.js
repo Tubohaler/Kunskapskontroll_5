@@ -1,22 +1,20 @@
-// import $ from "jquery";
-
 const mainElement = document.querySelector("main");
 const displayPage = document.querySelector("h6");
 
 // knapparna
-const backwardsButton = document.querySelector(".previous");
+const backwardButton = document.querySelector(".previous");
 const forwardButton = document.querySelector(".next");
 
-let counter = 0;
+let pageNumber = 0;
 
 //Page counter
 function updatePageNr() {
-  displayPage.textContent = `Showing page ${counter}`;
+  displayPage.textContent = `Showing page ${pageNumber}`;
 }
 
 async function fetchingImg() {
   const response = await fetch(
-    `https://api.thecatapi.com/v1/images/search?limit=12&page=${counter}&order=asc`,
+    `https://api.thecatapi.com/v1/images/search?limit=12&page=${pageNumber}&order=asc`,
 
     {
       headers: {
@@ -29,10 +27,7 @@ async function fetchingImg() {
   mainElement.textContent = null;
 
   data.forEach(async (item) => {
-    console.log(item.url);
-
     const div = document.createElement("div");
-    div.classList.add("cat");
     mainElement.append(div);
 
     const img = document.createElement("img");
@@ -42,28 +37,25 @@ async function fetchingImg() {
 }
 
 function incrementCounter() {
-  counter++;
-  backwardsButton.disabled = false;
+  pageNumber++;
+  backwardButton.disabled = false;
   updatePageNr(displayPage);
-  console.log(counter);
   fetchingImg();
 }
 
 function decrementCounter() {
-  if (counter === 0) {
-    backwardsButton.disabled = true;
+  if (pageNumber === 0) {
+    backwardButton.disabled = true;
   } else {
-    counter--;
+    pageNumber--;
     fetchingImg();
   }
-  console.log(counter);
   updatePageNr(displayPage);
-  console.log(counter);
 }
 // Event
 async function setUpListeners() {
   forwardButton.addEventListener("click", incrementCounter);
-  backwardsButton.addEventListener("click", decrementCounter);
+  backwardButton.addEventListener("click", decrementCounter);
 }
 setUpListeners();
 fetchingImg();
